@@ -11,12 +11,20 @@ const Phonebook = () => {
     { id: "id-3", name: "Eden Clements", number: "645-17-79" },
     { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
   ]);
+
   const [filter, setFilter] = useState("");
 
   const handleSubmit = (newContact) => {
     setContacts((prevContacts) => [...prevContacts, newContact]);
   };
-  const filteredOuput = () => {};
+
+  const handleFilter = (e) => {
+    setFilter(e.target.value);
+  };
+
+  const filteredContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <>
@@ -24,10 +32,11 @@ const Phonebook = () => {
         <ContactForm onSubmit={handleSubmit} />
       </Section>
       <Section title="Contacts">
-        <Filter filter={filter} setFilter={setFilter} />
-        <Contacts contacts={contacts} setContacts={setContacts} />
+        <Filter filter={filter} setFilter={handleFilter} />
+        <Contacts contacts={filteredContacts} setContacts={setContacts} />
       </Section>
     </>
   );
 };
+
 export default Phonebook;

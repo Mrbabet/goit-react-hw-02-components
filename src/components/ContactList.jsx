@@ -10,9 +10,9 @@ const ContactList = ({ contacts, setContacts }) => {
   return (
     <ul>
       {contacts.map((contact) => {
-        console.log(contact);
         return (
           <li key={contact.id}>
+          
             {contact.name}: {contact.number}
             <button onClick={() => handleDelete(contact.id)}>Delete</button>
           </li>
